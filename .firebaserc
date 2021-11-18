@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "chat-in-session": {
+      "hosting": {
+        "chat-in-session": [
+          "chat-in-session"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "chat-in-session"
+  }
+}

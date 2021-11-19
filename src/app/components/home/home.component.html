@@ -1,1 +1,63 @@
-<p>home works!</p>
+<div class="container pt-5">
+  <div class="row align-content-center">
+    <div
+      class="col h-75 rounded"
+      style="
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        /* background-color: #a3cef1; */
+      "
+    >
+      <div class="container">
+        <div class="row p-3 text-center">
+          <div class="col">
+            <h3>Chat in Session</h3>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col">
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="username"
+              maxlength="24"
+              [(ngModel)]="username"
+              class="w-50 t-field rounded-pill text-center"
+            />
+          </div>
+        </div>
+        <div class="row p-3 text-center">
+          <div class="col p-3" style="border: 3px dashed #a3cef1">
+            <button
+              type="button"
+              class="btn c-btn"
+              id="createBtn"
+              (click)="createSession()"
+            >
+              Create Session
+            </button>
+          </div>
+          <div class="col p-3" style="border: 3px dashed #a3cef1">
+            <input
+              type="text"
+              name="sessionid"
+              id="sessionid"
+              placeholder="session id"
+              maxlength="24"
+              [(ngModel)]="sessionid"
+              class="w-50 mb-3 t-field rounded-pill text-center"
+            />
+            <button
+              type="button"
+              class="btn c-btn"
+              id="createBtn"
+              (click)="joinSession()"
+            >
+              Join Session
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

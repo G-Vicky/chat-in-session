@@ -1,0 +1,19 @@
+input {
+  outline: none;
+  border: none;
+  border: 3px solid #a3cef1;
+}
+
+input:focus,
+input:hover {
+  border: 3px solid #57cc99;
+}
+
+#sessionid {
+  background-color: #57cc99;
+  color: black;
+  border: none;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}

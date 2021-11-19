@@ -1,1 +1,30 @@
-<p>chat works!</p>
+<div class="container h-100">
+  <div class="row h-100 align-content-center">
+    <div
+      class="col h-75 rounded"
+      style="
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        /* background-color: #a3cef1; */
+      "
+    >
+      <div class="container h-100">
+        <div class="row" style="height: 80%">
+          <div class="col">
+            <app-messages></app-messages>
+          </div>
+        </div>
+        <div class="row align-content-center" style="height: 20%">
+          <div class="col h-50">
+            <input
+              type="text"
+              name="message"
+              maxlength="100"
+              class="w-100 pl-3 pr-3 h-100 rounded-pill text-right"
+              style="outline: none; border: none; border: 3px solid #a3cef1"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AboutComponent } from './components/about/about.component';
 import { InvalidCodeComponent } from './components/invalid-code/invalid-code.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { MessagesComponent } from './components/messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     LoginComponent,
     AboutComponent,
     InvalidCodeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

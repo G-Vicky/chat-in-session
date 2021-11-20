@@ -13,6 +13,7 @@
   width: 60%;
   font-size: larger;
   font-weight: bold;
+  /* white-space: nowrap; */
   background-color: #57cc99;
   border: 2px dashed #57cc99;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

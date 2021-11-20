@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService } from 'src/app/services/session.service';
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,19 +10,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   public username: String = '';
-  public sessionid: String = '';
+  public sessionId: String = '';
 
-  constructor() {}
+  constructor(
+    private sessionService: SessionService,
+    public toastService: ToastrService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   createSession() {
-    console.log('Creating new sessino for ' + this.username);
+    this.username = this.username.trim();
+    if (this.username) {
+      const sessionId = this.sessionService.createNewSession(this.username);
+      this.router.navigateByUrl(`chat/${sessionId}`);
+    } else this.toastService.error('username is required');
   }
 
   joinSession() {
-    console.log(
-      'Joining session with ' + this.sessionid + ' for ' + this.username
-    );
+    this.username = this.username.trim();
+    this.sessionId = this.sessionId.trim();
+    if (this.sessionId && this.username) {
+      this.sessionService.joinSession(this.username, this.sessionId);
+    } else this.toastService.error('username and sessionid is required');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.params.subscribe((data) => {
+      if (data.status === 'invalid') this.toastService.error('Invalid session');
+      this.sessionId = '';
+      this.router.navigateByUrl(`home`);
+    });
+  }
 }

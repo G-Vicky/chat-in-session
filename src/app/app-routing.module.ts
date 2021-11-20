@@ -8,12 +8,14 @@ import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'home/:status', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'chat/:session', component: ChatComponent },
   { path: 'invalid', component: InvalidCodeComponent },
-  { path: '**', component: PageNotFoundComponent },
+  { path: '**', component: LoginComponent },
 ];
 
 @NgModule({

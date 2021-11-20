@@ -17,6 +17,15 @@ import { AboutComponent } from './components/about/about.component';
 import { InvalidCodeComponent } from './components/invalid-code/invalid-code.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import {
+  AngularFireDatabase,
+  AngularFireDatabaseModule,
+} from '@angular/fire/compat/database';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularFireModule } from '@angular/fire/compat';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -32,14 +41,19 @@ import { MessagesComponent } from './components/messages/messages.component';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     NgbModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideStorage(() => getStorage()),
   ],
-  providers: [],
+  providers: [AngularFireDatabase],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

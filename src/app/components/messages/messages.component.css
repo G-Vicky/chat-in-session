@@ -7,3 +7,11 @@ li {
   list-style-type: none;
   margin: none;
 }
+
+.chatmsg {
+  color: #00b4d8;
+}
+
+.chattitle {
+  color: #119822;
+}

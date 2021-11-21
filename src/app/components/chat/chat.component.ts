@@ -25,7 +25,10 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage() {
-    this.messageService.sendMessage(this.sessionId, this.messageText);
+    console.log('sending msg!!');
+    this.messageText = this.messageText.trim();
+    if (this.messageText)
+      this.messageService.sendMessage(this.sessionId, this.messageText);
     this.messageText = '';
   }
 
@@ -43,7 +46,13 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.route.params.subscribe((data) => (this.sessionId = data.session));
+    if (localStorage.getItem('username') === null)
+      this.router.navigateByUrl('invalid');
+    this.route.params.subscribe((data) => {
+      this.sessionId = data.session;
+      if (localStorage.getItem('sessionId') !== this.sessionId)
+        this.router.navigateByUrl('invalid');
+    });
     this.getAllMessages();
   }
 }

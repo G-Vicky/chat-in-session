@@ -14,29 +14,38 @@ import MessageModel from '../models/message';
 export class SessionService {
   constructor(private db: AngularFireDatabase, private router: Router) {}
 
-  private getWelcomeMessage(sesssionId: String): String {
-    return `Hello! there!!😃 Share this ${sesssionId} code with your friends to join in this session. Enjoy peeps!`;
+  private getWelcomeMessage(username: String, sesssionId: String): String {
+    return `Hello! ${username}!😃 Share this ${sesssionId} code with your friends to join in this session. Enjoy peeps!`;
   }
 
   createNewSession(username: String) {
     localStorage.setItem('username', username.toString());
-    const sessionId = new Date().getTime().toString().substring(7);
+    let sessionId = new Date().getTime().toString().substring(7);
     const message = new MessageModel(
       new Date().getTime(),
       'Chat-In-Session',
-      this.getWelcomeMessage(sessionId)
+      this.getWelcomeMessage(username, sessionId)
     );
-    this.db.list(`chat/${sessionId}/messages`).push(message);
-    return sessionId;
+    this.db
+      .list(`chat/${sessionId}/messages`)
+      .query.once('value')
+      .then((data) => {
+        if (!data.exists()) {
+          this.db.list(`chat/${sessionId}/messages`).push(message);
+          localStorage.setItem('sessionId', sessionId);
+          this.router.navigateByUrl(`chat/${sessionId}`);
+        } else this.router.navigateByUrl(`home/invalid`);
+      });
   }
 
   joinSession(username: String, sessionId: String) {
-    return this.db
+    this.db
       .list(`chat/${sessionId}/messages`)
       .query.once('value')
       .then((data) => {
         if (data.exists()) {
           localStorage.setItem('username', username.toString());
+          localStorage.setItem('sessionId', sessionId.toString());
           this.join(username, sessionId);
         } else this.router.navigateByUrl(`home/invalid`);
       });

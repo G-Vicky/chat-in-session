@@ -23,14 +23,8 @@
           #scrollMe
           [scrollTop]="scrollMe.scrollHeight"
         >
-          <div class="col-9" style="height: 100%; overflow-y: scroll">
+          <div class="col" style="height: 100%; overflow-y: scroll">
             <app-messages [messages]="messages"></app-messages>
-          </div>
-          <div
-            class="col-3"
-            style="border-left: 3px dashed #a3cef1; overflow-y: scroll"
-          >
-            <app-members></app-members>
           </div>
         </div>
         <div class="row w-100 align-content-center" style="height: 18%">

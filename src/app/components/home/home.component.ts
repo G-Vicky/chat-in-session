@@ -22,8 +22,7 @@ export class HomeComponent implements OnInit {
   createSession() {
     this.username = this.username.trim();
     if (this.username) {
-      const sessionId = this.sessionService.createNewSession(this.username);
-      this.router.navigateByUrl(`chat/${sessionId}`);
+      this.sessionService.createNewSession(this.username);
     } else this.toastService.error('username is required');
   }
 
@@ -41,5 +40,6 @@ export class HomeComponent implements OnInit {
       this.sessionId = '';
       this.router.navigateByUrl(`home`);
     });
+    this.username = localStorage.getItem('username') || '';
   }
 }

@@ -19,7 +19,6 @@ export class SessionService {
   }
 
   createNewSession(username: String) {
-    localStorage.setItem('username', username.toString());
     let sessionId = new Date().getTime().toString().substring(7);
     const message = new MessageModel(
       new Date().getTime(),
@@ -30,9 +29,11 @@ export class SessionService {
       .list(`chat/${sessionId}/messages`)
       .query.once('value')
       .then((data) => {
+        console.log(data.exists());
         if (!data.exists()) {
-          this.db.list(`chat/${sessionId}/messages`).push(message);
+          localStorage.setItem('username', username.toString());
           localStorage.setItem('sessionId', sessionId);
+          this.db.list(`chat/${sessionId}/messages`).push(message);
           this.router.navigateByUrl(`chat/${sessionId}`);
         } else this.router.navigateByUrl(`home/invalid`);
       });

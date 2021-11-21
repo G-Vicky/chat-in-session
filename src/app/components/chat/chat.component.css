@@ -20,5 +20,8 @@ input:hover {
 #sendBtn {
   /* background-image: "https://img.icons8.com/external-prettycons-lineal-prettycons/49/000000/external-send-social-media-prettycons-lineal-prettycons.png"; */
   /* background: url("https://img.icons8.com/external-prettycons-lineal-prettycons/49/000000/external-send-social-media-prettycons-lineal-prettycons.png"); */
+  font-weight: bold;
   background: url("../../../assets/send.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }

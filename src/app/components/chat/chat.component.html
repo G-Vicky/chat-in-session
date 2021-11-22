@@ -24,6 +24,9 @@
           [scrollTop]="scrollMe.scrollHeight"
         >
           <div class="col" style="height: 100%; overflow-y: scroll">
+            <div class="members rounded">
+              <app-members></app-members>
+            </div>
             <app-messages [messages]="messages"></app-messages>
           </div>
         </div>

@@ -33,7 +33,10 @@ export class SessionService {
         if (!data.exists()) {
           localStorage.setItem('username', username.toString());
           localStorage.setItem('sessionId', sessionId);
-          this.db.list(`chat/${sessionId}/messages`).push(message);
+          this.db.list(`chat/${sessionId}/messages`).push(message); //Welcome message
+          this.db
+            .list(`chat/${sessionId}/members`)
+            .push({ username: username }); //adding memebers count
           this.router.navigateByUrl(`chat/${sessionId}`);
         } else this.router.navigateByUrl(`home/invalid`);
       });
@@ -59,6 +62,7 @@ export class SessionService {
       'Attention!! new Joinie: ' + username
     );
     this.db.list(`chat/${sessionId}/messages`).push(message);
+    this.db.list(`chat/${sessionId}/members`).push({ username: username }); //adding memebers count
     this.router.navigateByUrl(`chat/${sessionId}`);
   }
 }

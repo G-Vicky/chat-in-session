@@ -25,3 +25,9 @@ input:hover {
   background-size: contain;
   background-repeat: no-repeat;
 }
+.members {
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  border: 2px dashed #57cc99;
+}

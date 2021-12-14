@@ -24,6 +24,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { MembersComponent } from './components/members/members.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HelpComponent } from './components/help/help.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { MembersComponent } from './components/members/members.component';
     PageNotFoundComponent,
     MessagesComponent,
     MembersComponent,
+    NavbarComponent,
+    HelpComponent,
   ],
   imports: [
     BrowserModule,

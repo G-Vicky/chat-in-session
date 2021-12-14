@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import MessageModel from 'src/app/models/message';
+import { Clipboard } from '@angular/cdk/clipboard';
 
 import { MessageService } from 'src/app/services/message.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-chat',
@@ -19,7 +21,9 @@ export class ChatComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private clipboard: Clipboard,
+    private toastService: ToastrService
   ) {
     this.loading = true;
   }
@@ -42,6 +46,11 @@ export class ChatComponent implements OnInit {
           this.loading = false;
         } else this.router.navigateByUrl('invalid');
       });
+  }
+
+  cpyToClipBoard() {
+    this.clipboard.copy(this.sessionId + '');
+    this.toastService.success('copied to clipboard');
   }
 
   ngOnInit(): void {

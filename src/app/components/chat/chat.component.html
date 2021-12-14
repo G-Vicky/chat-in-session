@@ -1,8 +1,8 @@
-<div class="container h-100">
+<div class="container" style="height: 90%">
   <div class="row h-100 align-content-center">
     <div
-      class="col h-75 rounded"
-      style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px"
+      class="col rounded"
+      style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; height: 90%"
     >
       <div
         class="h-100 d-flex justify-content-center align-items-center"
@@ -17,13 +17,13 @@
 
       <!-- todo : change here for loading!! -->
       <div class="container h-100" *ngIf="!loading">
-        <div
-          class="row mt-3"
-          style="height: 80%; border: 3px dashed #a3cef1"
-          #scrollMe
-          [scrollTop]="scrollMe.scrollHeight"
-        >
-          <div class="col" style="height: 100%; overflow-y: scroll">
+        <div class="row mt-3" style="height: 80%; border: 3px dashed #a3cef1">
+          <div
+            class="col"
+            style="height: 100%; overflow-y: scroll"
+            #scrollMe
+            [scrollTop]="scrollMe.scrollHeight"
+          >
             <div class="members rounded">
               <app-members></app-members>
             </div>
@@ -72,6 +72,7 @@
               "
               placement="top"
               ngbTooltip="Click to copy"
+              (click)="cpyToClipBoard()"
               readonly
             />
           </div>

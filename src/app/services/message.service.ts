@@ -5,7 +5,11 @@ import {
   AngularFireObject,
 } from '@angular/fire/compat/database';
 import { Router } from '@angular/router';
+import { observable, pipe } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import 'rxjs';
 import MessageModel from '../models/message';
+import { map } from '@firebase/util';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +18,13 @@ export class MessageService {
   username: String = '';
   constructor(private db: AngularFireDatabase, private router: Router) {}
 
-  getMessages(sessionId: String): AngularFireList<MessageModel> {
+  getMessages(sessionId: String): AngularFireList<any> {
+    this.db
+      .object(`chat/${sessionId}/messages`)
+      .snapshotChanges()
+      .subscribe((data) => {
+        console.log(data.payload.val());
+      });
     return this.db.list(`chat/${sessionId}/messages`);
   }
 
